@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BAMulator — Fast variant simulation on BAMs</title>
+  <meta name="description" content="BAMulator simulates variants directly on existing BAM files. Docs, quickstart, and usage.">
+  <meta property="og:title" content="BAMulator — Fast variant simulation on BAMs">
+  <meta property="og:description" content="Simulate variants directly on existing BAM files.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/bamulator/bamulator">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Highlight.js (for code blocks) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(1200px 600px at 110% -10%, rgba(99,102,241,.15), transparent 60%),
+                     radial-gradient(900px 500px at -10% -20%, rgba(16,185,129,.12), transparent 60%),
+                     linear-gradient(180deg, #0b1020 0%, #0a0f1a 100%);
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: #0a0f1a;
+      color: #e9eef6;
+    }
+    .navbar-brand span { font-weight: 800; letter-spacing: .3px; }
+    .hero {
+      background: var(--bg-gradient);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .badge { background: rgba(99,102,241,.2); color: #c7c9ff; }
+    .hero h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.1; }
+    .hero p.lead { color: #b9c2cf; }
+    .section-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    pre { background: #0f1726; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .copy-btn {
+      position: absolute; right: .75rem; top: .75rem; z-index: 2;
+    }
+    .code-wrap { position: relative; }
+    .anchor-offset { scroll-margin-top: 90px; }
+    .toc {
+      position: sticky; top: 90px; max-height: calc(100vh - 110px); overflow: auto;
+      padding-top: 1rem; padding-bottom: 1rem;
+    }
+    .toc a { color: #c9d7ee; text-decoration: none; }
+    .toc a:hover { color: #fff; }
+    .feature-badge { background: rgba(99,102,241,.16); border: 1px solid rgba(99,102,241,.35); color: #d9dbff; }
+    .limit-item { background: rgba(239,68,68,.06); border: 1px dashed rgba(239,68,68,.45); }
+    footer { color: #95a3b8; }
+    .btn-outline-light { --bs-btn-border-color: rgba(255,255,255,.35); }
+    .kbd { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); padding: .15rem .45rem; border-radius: .4rem; font-size: .85em; }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark navbar-expand-lg bg-transparent fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#top">
+        <i class="bi bi-boxes"></i>
+        <span>BAMulator</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#install">Install</a></li>
+          <li class="nav-item"><a class="nav-link" href="#usage">Usage</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quickstart">Quick start</a></li>
+          <li class="nav-item"><a class="nav-link" href="#variants">Variant config</a></li>
+          <li class="nav-item"><a class="nav-link" href="#phasing">Phasing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#limitations">Limitations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#helper">Helper script</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero py-5" id="top">
+    <div class="container py-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="badge rounded-pill mb-3">Fast BAM variant simulation</span>
+          <h1 class="mb-3">BAMulator — <span class="text-gradient">Simulate variants directly on existing BAM files</span></h1>
+          <p class="lead mb-4">Inject SNVs, indels (incl. complex) and CNVs into real sequencing data. Multithreaded. VAF-aware when CNVs overlap SNVs.</p>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="#quickstart" class="btn btn-primary btn-lg"><i class="bi bi-play-fill me-2"></i>Quick start</a>
+            <a href="#usage" class="btn btn-outline-light btn-lg"><i class="bi bi-terminal me-2"></i>CLI usage</a>
+            <a href="#features" class="btn btn-outline-light btn-lg"><i class="bi bi-stars me-2"></i>Features</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="section-card p-4">
+            <div class="small text-uppercase text-secondary">Install</div>
+            <div class="code-wrap mt-2">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#install-code"><i class="bi bi-clipboard"></i> Copy</button>
+              <pre class="mb-0"><code id="install-code" class="language-bash">pip3 install -r requirements.txt</code></pre>
+            </div>
+            <div class="mt-3 small text-secondary">
+              <i class="bi bi-info-circle"></i> Requires Python 3. Ensure build deps for your platform are installed.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-5">
+    <div class="row g-4">
+      <aside class="col-lg-3 d-none d-lg-block">
+        <div class="toc">
+          <div class="fw-semibold text-uppercase small mb-2">On this page</div>
+          <ul class="list-unstyled lh-lg">
+            <li><a href="#install">Install</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="#options">Options</a></li>
+            <li><a href="#quickstart">Quick start</a></li>
+            <li><a href="#variants">Variant config</a></li>
+            <li><a href="#phasing">Phasing</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#limitations">Limitations</a></li>
+            <li><a href="#helper">Helper script</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="col-lg-9">
+        <!-- Install -->
+        <section id="install" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-download me-2"></i>Install</h2>
+            <div class="code-wrap">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#install-code-2"><i class="bi bi-clipboard"></i> Copy</button>
+              <pre class="mb-0"><code id="install-code-2" class="language-bash">pip3 install -r requirements.txt</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Usage -->
+        <section id="usage" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-terminal me-2"></i>Usage</h2>
+            <div class="code-wrap mb-4">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#usage-code"><i class="bi bi-clipboard"></i> Copy</button>
+<pre class="mb-0"><code id="usage-code" class="language-text">Usage: bamulator [OPTIONS]
+
+Options:
+  -v, --variants TEXT     Tab-separated file listing BAM files and variants
+                          [required]
+  -t, --threads INTEGER   Total number of threads
+  -r, --reference TEXT    Genome reference in FASTA format  [required]
+  -o, --output TEXT       Output directory for simulated BAMs and phased VCFs
+                          [required]
+  -s, --suffix TEXT       Suffix for simulated BAM files
+  --input_vcf_list TEXT   File listing input VCFs or directory containing VCFs
+  --genome_version TEXT   Genome version for phasing (e.g., hg38, hg19)
+  --map_dir TEXT          Directory containing PLINK .map files for phasing
+  --ref_dir TEXT          Directory containing .bref3 reference files for
+                          phasing
+  --help                  Show this message and exit.</code></pre>
+            </div>
+
+            <!-- Options table -->
+            <div id="options" class="table-responsive">
+              <table class="table table-dark table-sm align-middle">
+                <thead>
+                  <tr>
+                    <th style="width: 22%">Option</th>
+                    <th style="width: 18%">Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>-v, --variants</code></td><td>TEXT</td><td>Tab-separated file listing BAM files and variants <span class="badge text-bg-danger">required</span></td></tr>
+                  <tr><td><code>-t, --threads</code></td><td>INTEGER</td><td>Total number of threads</td></tr>
+                  <tr><td><code>-r, --reference</code></td><td>TEXT</td><td>Genome reference in FASTA format <span class="badge text-bg-danger">required</span></td></tr>
+                  <tr><td><code>-o, --output</code></td><td>TEXT</td><td>Output directory for simulated BAMs and phased VCFs <span class="badge text-bg-danger">required</span></td></tr>
+                  <tr><td><code>-s, --suffix</code></td><td>TEXT</td><td>Suffix for simulated BAM files (default <code>.simulated</code>)</td></tr>
+                  <tr><td><code>--input_vcf_list</code></td><td>TEXT</td><td>File listing input VCFs or directory containing VCFs</td></tr>
+                  <tr><td><code>--genome_version</code></td><td>TEXT</td><td>Genome version for phasing (e.g., <code>hg38</code>, <code>hg19</code>)</td></tr>
+                  <tr><td><code>--map_dir</code></td><td>TEXT</td><td>Directory containing PLINK <code>.map</code> files for phasing</td></tr>
+                  <tr><td><code>--ref_dir</code></td><td>TEXT</td><td>Directory containing <code>.bref3</code> reference files for phasing</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick start -->
+        <section id="quickstart" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-lightning-charge me-2"></i>Quick start</h2>
+            <div class="code-wrap">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#quick-code"><i class="bi bi-clipboard"></i> Copy</button>
+<pre class="mb-0"><code id="quick-code" class="language-bash">bamulator \
+  --variants variants.txt \
+  --reference /path/to/ref.fasta \
+  --threads 4 \
+  --suffix .simulated \
+  --output /path/to/outdir</code></pre>
+            </div>
+            <p class="mt-3 text-secondary">Output BAMs are named <code>&lt;sample&gt;&lt;suffix&gt;.bam</code> (default suffix: <code>.simulated</code>).</p>
+          </div>
+        </section>
+
+        <!-- Variant config -->
+        <section id="variants" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-sliders me-2"></i>Variant config (<code>variants.txt</code>)</h2>
+            <p>One variant per line, tab-separated.</p>
+
+            <h5 class="mt-4">SNVs / small indels</h5>
+            <div class="code-wrap mb-2">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#snv-code"><i class="bi bi-clipboard"></i> Copy</button>
+<pre class="mb-0"><code id="snv-code" class="language-text">/home/user/input/sample1.bam	chr7	55242467	GAATTAAGAGAAGCAACA	GTTGCT
+/home/user/input/sample2.bam	chr18	29104352	A	T</code></pre>
+            </div>
+            <p class="text-secondary">Columns: <span class="kbd">BAM</span>, <span class="kbd">chrom</span>, <span class="kbd">pos (1-based)</span>, <span class="kbd">REF</span>, <span class="kbd">ALT</span></p>
+
+            <h5 class="mt-4">CNVs</h5>
+            <div class="code-wrap mb-2">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#cnv-code"><i class="bi bi-clipboard"></i> Copy</button>
+<pre class="mb-0"><code id="cnv-code" class="language-text">/home/user/input/sample3.bam	chr1	156082722	156089883	DEL	SOS1_7_to_8	1	multiple
+/home/user/input/sample4.bam	chr7	150652435	150661275	DUP	TAZ_1_to_4	1	multiple</code></pre>
+            </div>
+            <p class="text-secondary">Columns: <span class="kbd">BAM</span>, <span class="kbd">chrom</span>, <span class="kbd">start</span>, <span class="kbd">end</span>, <span class="kbd">type</span> (<code>DEL|DUP</code>), <span class="kbd">label</span>, <span class="kbd">copy-number/state</span>, <span class="kbd">mode</span></p>
+          </div>
+        </section>
+
+        <!-- Phasing -->
+        <section id="phasing" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-diagram-3 me-2"></i>Phasing (optional)</h2>
+            <p>Provide <code>--input_vcf_list</code> plus:</p>
+            <ul class="mb-3">
+              <li><code>--genome_version</code> (e.g., <code>hg38</code>, <code>hg19</code>)</li>
+              <li><code>--map_dir</code> with PLINK <code>.map</code></li>
+              <li><code>--ref_dir</code> with <code>.bref3</code></li>
+            </ul>
+            <div class="alert alert-info border-0" role="alert">
+              <i class="bi bi-info-circle me-2"></i>Phased VCFs are written to <code>--output</code>.
+            </div>
+          </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-stars me-2"></i>Features</h2>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge feature-badge">SNVs, indels (including complex)</span>
+              <span class="badge feature-badge">CNV simulation</span>
+              <span class="badge feature-badge">VAFs adjusted for SNV–CNV overlap</span>
+              <span class="badge feature-badge">Multithreaded execution</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Limitations -->
+        <section id="limitations" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item bg-transparent text-white limit-item">No SVs requiring sequenced breakpoints</li>
+              <li class="list-group-item bg-transparent text-white limit-item">No somatic variant simulation</li>
+              <li class="list-group-item bg-transparent text-white limit-item">Copy-number changes &gt; 3 not supported; no homo/hemizygous deletions</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Helper script -->
+        <section id="helper" class="anchor-offset mb-5">
+          <div class="section-card p-4 p-md-5">
+            <h2 class="mb-3"><i class="bi bi-tools me-2"></i>Helper script</h2>
+            <p>Generate CNV configs:</p>
+            <div class="code-wrap">
+              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#helper-code"><i class="bi bi-clipboard"></i> Copy</button>
+<pre class="mb-0"><code id="helper-code" class="language-bash">python3 scripts/generate_cnv_config.py \
+  --indir /path/to/bam_dir \
+  -c &lt;del|dup&gt; \
+  -b /path/to/gene_panel.bed \
+  --mode &lt;single|multiple&gt; &gt; variants.txt</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <footer class="py-4 text-center">
+          <div class="small">&copy; <span id="year"></span> BAMulator. Built with ❤️ on GitHub Pages &amp; Bootstrap.</div>
+          <div class="small">To publish: place this file at <code>/docs/index.html</code> and enable Pages (Deploy from branch → <code>main</code> → folder <code>/docs</code>).</div>
+        </footer>
+      </section>
+    </div>
+  </main>
+
+  <!-- Back to top button -->
+  <button id="toTop" type="button" class="btn btn-primary position-fixed" style="right: 20px; bottom: 24px; display:none" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    // Copy buttons
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const target = document.querySelector(btn.getAttribute('data-copy'));
+        const text = target ? target.innerText : '';
+        try {
+          await navigator.clipboard.writeText(text);
+          const icon = btn.querySelector('i');
+          const old = icon.className;
+          icon.className = 'bi bi-clipboard-check';
+          btn.classList.add('btn-success');
+          setTimeout(() => { icon.className = old; btn.classList.remove('btn-success'); }, 1200);
+        } catch(e) {
+          alert('Copy failed. Select the text and copy manually.');
+        }
+      });
+    });
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      toTop.style.display = window.scrollY > 500 ? 'inline-flex' : 'none';
+    });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
