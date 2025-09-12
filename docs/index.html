@@ -19,30 +19,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root { --bs-primary: #10b981; --bs-primary-rgb: 16,185,129; --bs-success: #10b981; --bs-link-color: #059669; --bs-link-hover-color: #047857; --brand-50:#ecfdf5; --brand-100:#d1fae5; --brand-200:#a7f3d0; --brand-300:#6ee7b7; --brand-400:#34d399; --brand-500:#10b981; --brand-600:#059669; --brand-700:#047857; --surface-0:#ffffff; --surface-1:#f7fbf9; --line:#e6f1ea; }
     body {
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: #ffffff;
+      background: 
+        radial-gradient(1000px 500px at 110% -10%, rgba(16,185,129,0.12), transparent 60%),
+        radial-gradient(700px 400px at -10% 0%, rgba(16,185,129,0.08), transparent 60%),
+        linear-gradient(180deg, var(--surface-0), var(--surface-1));
       color: #212529;
+      background-attachment: fixed;
     }
     .navbar-brand span { font-weight: 700; letter-spacing: .2px; }
-    .hero { background: #f8f9fa; border-bottom: 1px solid #e9ecef; }
-    .hero .badge { background: #e7f1ff; color: #0d6efd; }
-    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; }
+    .hero { background: 
+        radial-gradient(1200px 600px at 110% -10%, rgba(16,185,129,0.12), transparent 60%),
+        radial-gradient(900px 500px at -10% -20%, rgba(16,185,129,0.12), transparent 60%),
+        linear-gradient(180deg, #f3fbf7, #edf8f1); border-bottom: 1px solid var(--line); }
+    .hero.bg-light { background: 
+        radial-gradient(1200px 600px at 110% -10%, rgba(16,185,129,0.12), transparent 60%),
+        radial-gradient(900px 500px at -10% -20%, rgba(16,185,129,0.12), transparent 60%),
+        linear-gradient(180deg, #f3fbf7, #edf8f1) !important; }
+    .hero .badge { background: #ecfdf5; color: #047857; }
+    .hero h1 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 700; line-height: 1.15; }
     .hero p.lead { color: #495057; }
-    .section-card { background: #fff; border: 1px solid #e9ecef; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.04); }
-    pre { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 10px; }
+    .section-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 24px rgba(16,185,129,.06), 0 1px 2px rgba(0,0,0,.04); }
+    pre { background: linear-gradient(180deg,#f7fbf9,#f3faf6); border: 1px solid var(--line); border-radius: 10px; }
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     .copy-btn { position: absolute; right: .75rem; top: .75rem; z-index: 2; }
     .code-wrap { position: relative; }
     .anchor-offset { scroll-margin-top: 70px; }
     .toc { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding-top: 1rem; padding-bottom: 1rem; }
     .toc a { color: #495057; text-decoration: none; }
-    .toc a:hover { color: #0d6efd; }
-    .feature-badge { background: #eef2ff; border: 1px solid #dbe4ff; color: #364fc7; }
+    .toc a:hover { color: #059669; }
+    .feature-badge { background: #ecfdf5; border: 1px solid #d1fae5; color: #065f46; }
     .limit-item { background: #fff; border: 1px dashed #e03131; }
     footer { color: #6c757d; }
     .kbd { background: #f1f3f5; border: 1px solid #e9ecef; padding: .15rem .45rem; border-radius: .4rem; font-size: .85em; }
-  </style>
+    #badges img { background: #fff; border: 1px solid #e9ecef; border-radius: 6px; }
+  #badges a { line-height: 0; }
+  h2 { font-size: 1.5rem; }
+  h5 { font-size: 1.05rem; letter-spacing: .1px; }
+    /* Variant icon styles */
+  .variant-card figure { margin: 0; }
+  .variant-icon { width: 100%; max-width: 240px; height: 130px; }
+  .variant-track { stroke-width: 6; stroke-linecap: round; fill: none; }
+  .variant-ref { stroke: #94a3b8; }
+  .variant-alt { stroke: var(--brand-600); }
+  .variant-accent { stroke: var(--brand-600); fill: var(--brand-100); }
+  .variant-neutral { fill: #fff; stroke: #94a3b8; }
+  .variant-label { font-size: 10px; fill: var(--brand-700); font-weight: 600; }
+  .variant-legend { font-size: 10px; fill: #64748b; font-weight: 600; }
+</style>
 </head>
 <body>
   <!-- NAVBAR -->
@@ -62,6 +88,7 @@
           <li class="nav-item"><a class="nav-link" href="#quickstart">Quick start</a></li>
           <li class="nav-item"><a class="nav-link" href="#variants">Variant config</a></li>
           <li class="nav-item"><a class="nav-link" href="#phasing">Phasing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#install-visuals">Visual guide</a></li>
           <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
           <li class="nav-item"><a class="nav-link" href="#limitations">Limitations</a></li>
           <li class="nav-item"><a class="nav-link" href="#helper">Helper script</a></li>
@@ -74,33 +101,48 @@
   <header class="hero bg-light py-5" id="top">
     <div class="container py-4">
       <div class="row align-items-center g-4">
-        <div class="col-lg-7">
+        <div class="col-lg-10">
           <span class="badge rounded-pill mb-3">Fast BAM variant simulation</span>
-          <h1 class="mb-3">BAMulator — <span>Simulate variants directly on existing BAM files</span></h1>
-          <p class="lead mb-4">Inject SNVs, indels (incl. complex) and CNVs into real sequencing data. Multithreaded. VAF-aware when CNVs overlap SNVs.</p>
-          <div class="d-flex gap-2 flex-wrap">
+          <h1 class="mb-3">BAMulator 
+            <h2>Simulate variants directly on existing BAM files</h2></h1>
+
+          <p class="lead mb-4">Inject SNVs, Indels (incl. complex) SVs, and CNVs (VAF-aware) into real sequencing data.</p>
+            <div class="d-flex gap-2 flex-wrap">
             <a href="#quickstart" class="btn btn-primary btn-lg"><i class="bi bi-play-fill me-2"></i>Quick start</a>
-            <a href="#usage" class="btn btn-outline-secondary btn-lg"><i class="bi bi-terminal me-2"></i>CLI usage</a>
-            <a href="#features" class="btn btn-outline-secondary btn-lg"><i class="bi bi-stars me-2"></i>Features</a>
+            <a href="#usage" class="btn btn-outline-primary btn-lg"><i class="bi bi-terminal me-2"></i>CLI usage</a>
+            <a href="#features" class="btn btn-outline-primary btn-lg"><i class="bi bi-stars me-2"></i>Features</a>
           </div>
+          
+          <div class="mt-3 d-flex flex-wrap align-items-center gap-2" id="badges" data-repo="YOURUSER/YOURREPO" data-docs-url="">
+              <!-- Replace data-repo with e.g. youruser/bamulator; set data-docs-url to your docs if not this page -->
+              <a class="text-decoration-none" id="star-link" aria-label="Star on GitHub" target="_blank" rel="noopener">
+                <img id="star-badge" alt="GitHub stars" height="20" loading="lazy">
+              </a>
+              <a class="text-decoration-none" id="downloads-link" aria-label="Downloads" target="_blank" rel="noopener">
+                <img id="downloads-badge" alt="GitHub downloads" height="20" loading="lazy">
+              </a>
+              <a class="text-decoration-none" id="docs-link" aria-label="Documentation">
+                <img id="docs-badge" alt="Docs" height="20" loading="lazy">
+              </a>
+            </div>
         </div>
-        <div class="col-lg-5">
+        <!-- <div class="col-lg-5">
           <div class="section-card p-4">
             <div class="small text-uppercase text-secondary">Install</div>
             <div class="code-wrap mt-2">
               <button class="btn btn-sm btn-secondary copy-btn" data-copy="#install-code"><i class="bi bi-clipboard"></i> Copy</button>
-              <pre class="mb-0"><code id="install-code" class="language-bash">pip3 install -r requirements.txt</code></pre>
+              <pre class="mb-0"><code id="install-code" class="language-bash">$ pip3 install -r requirements.txt</code></pre>
             </div>
             <div class="mt-3 small text-secondary">
               <i class="bi bi-info-circle"></i> Requires Python 3. Ensure build deps for your platform are installed.
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
 
-  <main class="container my-5">
+  <main class="container">
     <div class="row g-4">
       <aside class="col-lg-3 d-none d-lg-block">
         <div class="toc">
@@ -112,6 +154,7 @@
             <li><a href="#quickstart">Quick start</a></li>
             <li><a href="#variants">Variant config</a></li>
             <li><a href="#phasing">Phasing</a></li>
+            <li><a href="#install-visuals">Visual guide</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#limitations">Limitations</a></li>
             <li><a href="#helper">Helper script</a></li>
@@ -121,12 +164,181 @@
 
       <section class="col-lg-9">
         <!-- Install -->
-        <section id="install" class="anchor-offset mb-5">
+        <section id="" class="anchor-offset mb-2">
           <div class="section-card p-4 p-md-5">
+
+
+            <h2 class="" id="install-visuals"><i class="bi bi-diagram-2 me-2"></i>Visual guide — variant types</h2>
+            <p class="text-secondary">Each card shows a <span class="fw-semibold">reference</span> segment (top) and the <span class="fw-semibold">mutated</span> segment (bottom).</p>
+            <div class="row g-4">
+              <!-- SNV -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="snvTitle snvDesc">
+                      <title id="snvTitle">SNV</title>
+                      <desc id="snvDesc">Single-nucleotide change</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="110" y="30" width="20" height="20" rx="3" class="variant-neutral"/>
+                      <text x="120" y="40" text-anchor="middle" dominant-baseline="middle" class="variant-label">A</text>
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="110" y="80" width="20" height="20" rx="3" class="variant-accent"/>
+                      <text x="120" y="90" text-anchor="middle" dominant-baseline="middle" class="variant-label">T</text>
+                    </svg>
+                    <figcaption class="fw-semibold">SNV </figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Deletion (SV) -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="svdelTitle svdelDesc">
+                      <title id="svdelTitle">Deletion </title>
+                      <desc id="svdelDesc">Segment marked in REF, removed in ALT</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <!-- REF track with dashed-marked region to be deleted -->
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="70" y="32" width="100" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
+                      <!-- connectors from REF deletion edges to a single ALT center point -->
+                      <line x1="70" y1="48" x2="120" y2="90" stroke="var(--brand-600)" stroke-width="1"/>
+                      <line x1="170" y1="48" x2="120" y2="90" stroke="var(--brand-600)" stroke-width="1"/>
+                      <!-- ALT track with omitted (deleted) segment -->
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <line x1="40" y1="90" x2="70" y2="90" class="variant-track variant-alt"/>
+                      <line x1="170" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                    </svg>
+                    <figcaption class=" fw-semibold">Deletion</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Tandem Duplication (SV) -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="dupTitle dupDesc">
+                      <title id="dupTitle">Tandem Duplication (SV)</title>
+                      <desc id="dupDesc">Segment duplicated adjacent to itself</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="70" y="32" width="60" height="16" rx="4" class="variant-neutral"/>
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="70" y="82" width="60" height="16" rx="4" class="variant-accent"/>
+                      <rect x="132" y="82" width="60" height="16" rx="4" class="variant-accent"/>
+                      <text x="100" y="76" text-anchor="middle" class="variant-label">DUP</text>
+                    </svg>
+                    <figcaption class="fw-semibold">Tandem duplication</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- CNV (gain) equal-size copies -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="cnvTitle cnvDesc">
+                      <title id="cnvTitle">CNV (gain)</title>
+                      <desc id="cnvDesc">Copy number increased with equal-size copies</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="70" y="32" width="60" height="16" rx="4" class="variant-neutral"/>
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="70" y="82" width="60" height="16" rx="4" class="variant-accent"/>
+                      <rect x="70" y="64" width="60" height="16" rx="4" class="variant-accent"/>
+                      <rect x="70" y="46" width="60" height="16" rx="4" class="variant-accent"/>
+                      <text x="100" y="42" text-anchor="middle" class="variant-label">×3</text>
+                    </svg>
+                    <figcaption class=" fw-semibold">CNV (gain)</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Inversion (SV) -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="invTitle invDesc">
+                      <title id="invTitle">Inversion (SV)</title>
+                      <desc id="invDesc">Orientation of segment reversed</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="70" y="32" width="100" height="16" rx="4" class="variant-neutral"/>
+                      <polygon points="120,35 130,40 120,45" fill="#94a3b8"/>
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="70" y="82" width="100" height="16" rx="4" class="variant-accent"/>
+                      <polygon points="120,85 110,90 120,95" fill="var(--brand-600)"/>
+                    </svg>
+                    <figcaption class=" fw-semibold">Inversion</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Translocation (SV) simplified: chrA → chrB -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="traTitle traDesc">
+                      <title id="traTitle">Translocation (SV)</title>
+                      <desc id="traDesc">Segment moves from chrA (REF) to chrB (ALT)</desc>
+                      <defs>
+                        <marker id="arrowSimple" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+                          <path d="M0,0 L0,6 L6,3 z" fill="var(--brand-600)"/>
+                        </marker>
+                      </defs>
+                      <text x="14" y="44" class="variant-legend">chrA</text>
+                      <text x="14" y="94" class="variant-legend">chrB</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="80" y="32" width="40" height="16" rx="3" class="variant-neutral"/>
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="150" y="82" width="40" height="16" rx="3" class="variant-accent"/>
+                      <path d="M100,48 C120,66 140,74 170,90" stroke="var(--brand-600)" stroke-width="2" fill="none" marker-end="url(#arrowSimple)"/>
+                    </svg>
+                    <figcaption class="fw-semibold">Translocation</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- cxInDels (complex insertion + deletion at same locus) -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="cxindelTitle cxindelDesc">
+                      <title id="cxindelTitle">Complex InDels (cxInDels)</title>
+                      <desc id="cxindelDesc">Deletion in REF; smaller insertion in ALT at same locus</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="80" y="32" width="80" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
+
+                          <text x="120" y="42" text-anchor="middle" dominant-baseline="middle" class="variant-label">DEL</text>
+
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="110" y="84" width="40" height="12" rx="3" class="variant-accent"/>
+                      <text x="130" y="90" text-anchor="middle" dominant-baseline="middle" class="variant-label">INS</text>
+                    </svg>
+                    <figcaption class="fw-semibold">cxInDels</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        <section id="install" class="anchor-offset">
+          <div class="section-card p-4 p-md-5">
+
             <h2 class="mb-3"><i class="bi bi-download me-2"></i>Install</h2>
             <div class="code-wrap">
               <button class="btn btn-sm btn-secondary copy-btn" data-copy="#install-code-2"><i class="bi bi-clipboard"></i> Copy</button>
-              <pre class="mb-0"><code id="install-code-2" class="language-bash">pip3 install -r requirements.txt</code></pre>
+              <pre class="mb-0"><code id="install-code-2" class="language-bash">$ pip3 install -r requirements.txt</code></pre>
             </div>
           </div>
         </section>
@@ -135,25 +347,7 @@
         <section id="usage" class="anchor-offset mb-5">
           <div class="section-card p-4 p-md-5">
             <h2 class="mb-3"><i class="bi bi-terminal me-2"></i>Usage</h2>
-            <div class="code-wrap mb-4">
-              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#usage-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="usage-code" class="language-text">Usage: bamulator [OPTIONS]
 
-Options:
-  -v, --variants TEXT     Tab-separated file listing BAM files and variants
-                          [required]
-  -t, --threads INTEGER   Total number of threads
-  -r, --reference TEXT    Genome reference in FASTA format  [required]
-  -o, --output TEXT       Output directory for simulated BAMs and phased VCFs
-                          [required]
-  -s, --suffix TEXT       Suffix for simulated BAM files
-  --input_vcf_list TEXT   File listing input VCFs or directory containing VCFs
-  --genome_version TEXT   Genome version for phasing (e.g., hg38, hg19)
-  --map_dir TEXT          Directory containing PLINK .map files for phasing
-  --ref_dir TEXT          Directory containing .bref3 reference files for
-                          phasing
-  --help                  Show this message and exit.</code></pre>
-            </div>
 
             <!-- Options table -->
             <div id="options" class="table-responsive">
@@ -187,7 +381,7 @@ Options:
             <h2 class="mb-3"><i class="bi bi-lightning-charge me-2"></i>Quick start</h2>
             <div class="code-wrap">
               <button class="btn btn-sm btn-secondary copy-btn" data-copy="#quick-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="quick-code" class="language-bash">bamulator \
+<pre class="mb-0"><code id="quick-code" class="language-bash">$ bamulator \
   --variants variants.txt \
   --reference /path/to/ref.fasta \
   --threads 4 \
@@ -207,16 +401,16 @@ Options:
             <h5 class="mt-4">SNVs / small indels</h5>
             <div class="code-wrap mb-2">
               <button class="btn btn-sm btn-secondary copy-btn" data-copy="#snv-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="snv-code" class="language-text">/home/user/input/sample1.bam	chr7	55242467	GAATTAAGAGAAGCAACA	GTTGCT
-/home/user/input/sample2.bam	chr18	29104352	A	T</code></pre>
+<pre class="mb-0"><code id="snv-code" class="language-text">/home/user/input/sample1.bam  chr7  55242467  GAATTAAGAGAAGCAACA  GTTGCT
+/home/user/input/sample2.bam  chr18 29104352  A T</code></pre>
             </div>
             <p class="text-secondary">Columns: <span class="kbd">BAM</span>, <span class="kbd">chrom</span>, <span class="kbd">pos (1-based)</span>, <span class="kbd">REF</span>, <span class="kbd">ALT</span></p>
 
             <h5 class="mt-4">CNVs</h5>
             <div class="code-wrap mb-2">
               <button class="btn btn-sm btn-secondary copy-btn" data-copy="#cnv-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="cnv-code" class="language-text">/home/user/input/sample3.bam	chr1	156082722	156089883	DEL	SOS1_7_to_8	1	multiple
-/home/user/input/sample4.bam	chr7	150652435	150661275	DUP	TAZ_1_to_4	1	multiple</code></pre>
+<pre class="mb-0"><code id="cnv-code" class="language-text">/home/user/input/sample3.bam  chr1  156082722 156089883 DEL SOS1_7_to_8 1 multiple
+/home/user/input/sample4.bam  chr7  150652435 150661275 DUP TAZ_1_to_4  1 multiple</code></pre>
             </div>
             <p class="text-secondary">Columns: <span class="kbd">BAM</span>, <span class="kbd">chrom</span>, <span class="kbd">start</span>, <span class="kbd">end</span>, <span class="kbd">type</span> (<code>DEL|DUP</code>), <span class="kbd">label</span>, <span class="kbd">copy-number/state</span>, <span class="kbd">mode</span></p>
           </div>
@@ -237,6 +431,9 @@ Options:
             </div>
           </div>
         </section>
+
+        <!-- Visuals -->
+        
 
         <!-- Features -->
         <section id="features" class="anchor-offset mb-5">
@@ -270,7 +467,7 @@ Options:
             <p>Generate CNV configs:</p>
             <div class="code-wrap">
               <button class="btn btn-sm btn-secondary copy-btn" data-copy="#helper-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="helper-code" class="language-bash">python3 scripts/generate_cnv_config.py \
+<pre class="mb-0"><code id="helper-code" class="language-bash">$ python3 scripts/generate_cnv_config.py \
   --indir /path/to/bam_dir \
   -c &lt;del|dup&gt; \
   -b /path/to/gene_panel.bed \
@@ -321,6 +518,26 @@ Options:
       toTop.style.display = window.scrollY > 500 ? 'inline-flex' : 'none';
     });
     toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+  <script>
+    (function(){
+      const el = document.getElementById('badges');
+      if(!el) return;
+      const repo = el.dataset.repo || 'YOURUSER/YOURREPO';
+      const docsUrl = el.dataset.docsUrl || (window.location.origin + window.location.pathname);
+      const starBadge = document.getElementById('star-badge');
+      const dlBadge = document.getElementById('downloads-badge');
+      const docsBadge = document.getElementById('docs-badge');
+      const starLink = document.getElementById('star-link');
+      const dlLink = document.getElementById('downloads-link');
+      const docsLink = document.getElementById('docs-link');
+      starBadge.src = `https://img.shields.io/github/stars/${repo}?label=Stars&style=flat`;
+      dlBadge.src   = `https://img.shields.io/github/downloads/${repo}/total?label=Downloads&style=flat`;
+      docsBadge.src = `https://img.shields.io/badge/Docs-Website-10b981`;
+      starLink.href = `https://github.com/${repo}/stargazers`;
+      dlLink.href   = `https://github.com/${repo}/releases`;
+      docsLink.href = docsUrl;
+    })();
   </script>
 </body>
 </html>
