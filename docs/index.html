@@ -42,11 +42,25 @@
     .hero h1 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 700; line-height: 1.15; }
     .hero p.lead { color: #495057; }
     .section-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 24px rgba(16,185,129,.06), 0 1px 2px rgba(0,0,0,.04); }
-    pre { background: linear-gradient(180deg,#f7fbf9,#f3faf6); border: 1px solid var(--line); border-radius: 10px; }
+    .terminal {
+      border: 1px solid rgb(221, 219, 217);
+      background-color: rgb(255, 255, 253);
+      padding: 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .terminal pre {
+      font-size:11px;
+      background-color: rgb(227, 228, 218);
+    }
+    pre { font-size:15px;background: linear-gradient(180deg,#f7fbf9,#f3faf6); border: 1px solid var(--line); border-radius: 10px; }
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     .copy-btn { position: absolute; right: .75rem; top: .75rem; z-index: 2; }
-    .code-wrap { position: relative; }
-    .anchor-offset { scroll-margin-top: 70px; }
+    .code-wrap { 
+      position: relative;
+     }
+    .anchor-offset { 
+      scroll-margin-top: 70px;
+     }
     .toc { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding-top: 1rem; padding-bottom: 1rem; }
     .toc a { color: #495057; text-decoration: none; }
     .toc a:hover { color: #059669; }
@@ -61,7 +75,7 @@
     /* Variant icon styles */
   .variant-card figure { margin: 0; }
   .variant-icon { width: 100%; max-width: 240px; height: 130px; }
-  .variant-track { stroke-width: 6; stroke-linecap: round; fill: none; }
+  .variant-track { stroke-width: 6; stroke-linecap: square; fill: none; }
   .variant-ref { stroke: #94a3b8; }
   .variant-alt { stroke: var(--brand-600); }
   .variant-accent { stroke: var(--brand-600); fill: var(--brand-100); }
@@ -85,32 +99,25 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#install">Install</a></li>
           <li class="nav-item"><a class="nav-link" href="#usage">Usage</a></li>
-          <li class="nav-item"><a class="nav-link" href="#quickstart">Quick start</a></li>
-          <li class="nav-item"><a class="nav-link" href="#variants">Variant config</a></li>
-          <li class="nav-item"><a class="nav-link" href="#phasing">Phasing</a></li>
-          <li class="nav-item"><a class="nav-link" href="#install-visuals">Visual guide</a></li>
-          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-          <li class="nav-item"><a class="nav-link" href="#limitations">Limitations</a></li>
-          <li class="nav-item"><a class="nav-link" href="#helper">Helper script</a></li>
+          <li class="nav-item"><a class="nav-link" href="#feautres">Features</a></li>
+
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero bg-light py-5" id="top">
+  <header class="hero bg-light py-3" id="top">
     <div class="container py-4">
       <div class="row align-items-center g-4">
         <div class="col-lg-10">
           <span class="badge rounded-pill mb-3">Fast BAM variant simulation</span>
           <h1 class="mb-3">BAMulator 
-            <h2>Simulate variants directly on existing BAM files</h2></h1>
+            </h1>
 
-          <p class="lead mb-4">Inject SNVs, Indels (incl. complex) SVs, and CNVs (VAF-aware) into real sequencing data.</p>
+          <h2 class="lead mb-4">Easy and fast simulation of SNVs, Indels, CNVs and SVs into real sequencing data.</h2>
             <div class="d-flex gap-2 flex-wrap">
-            <a href="#quickstart" class="btn btn-primary btn-lg"><i class="bi bi-play-fill me-2"></i>Quick start</a>
-            <a href="#usage" class="btn btn-outline-primary btn-lg"><i class="bi bi-terminal me-2"></i>CLI usage</a>
-            <a href="#features" class="btn btn-outline-primary btn-lg"><i class="bi bi-stars me-2"></i>Features</a>
+            <a href="#usage" class="btn btn-primary btn-lg"><i class="bi bi-play-fill me-2"></i>Quick start</a>
           </div>
           
           <div class="mt-3 d-flex flex-wrap align-items-center gap-2" id="badges" data-repo="YOURUSER/YOURREPO" data-docs-url="">
@@ -126,50 +133,37 @@
               </a>
             </div>
         </div>
-        <!-- <div class="col-lg-5">
-          <div class="section-card p-4">
-            <div class="small text-uppercase text-secondary">Install</div>
-            <div class="code-wrap mt-2">
-              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#install-code"><i class="bi bi-clipboard"></i> Copy</button>
-              <pre class="mb-0"><code id="install-code" class="language-bash">$ pip3 install -r requirements.txt</code></pre>
-            </div>
-            <div class="mt-3 small text-secondary">
-              <i class="bi bi-info-circle"></i> Requires Python 3. Ensure build deps for your platform are installed.
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </header>
 
   <main class="container">
     <div class="row g-4">
-      <aside class="col-lg-3 d-none d-lg-block">
+      <aside class="col-lg-2 d-none d-lg-block">
         <div class="toc">
           <div class="fw-semibold text-uppercase small mb-2">On this page</div>
-          <ul class="list-unstyled lh-lg">
+          <ul class="list-unstyled lh-lg">            
+            <li><a href="#features">Features</a></li>
             <li><a href="#install">Install</a></li>
             <li><a href="#usage">Usage</a></li>
-            <li><a href="#options">Options</a></li>
-            <li><a href="#quickstart">Quick start</a></li>
-            <li><a href="#variants">Variant config</a></li>
-            <li><a href="#phasing">Phasing</a></li>
-            <li><a href="#install-visuals">Visual guide</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#limitations">Limitations</a></li>
-            <li><a href="#helper">Helper script</a></li>
           </ul>
         </div>
       </aside>
 
-      <section class="col-lg-9">
+      <section class="col-lg-10">
         <!-- Install -->
-        <section id="" class="anchor-offset mb-2">
-          <div class="section-card p-4 p-md-5">
 
 
-            <h2 class="" id="install-visuals"><i class="bi bi-diagram-2 me-2"></i>Visual guide — variant types</h2>
-            <p class="text-secondary">Each card shows a <span class="fw-semibold">reference</span> segment (top) and the <span class="fw-semibold">mutated</span> segment (bottom).</p>
+        <section id="features" class="anchor-offset mb-5">
+            <h2 class="mb-3"><i class="bi bi-stars me-2"></i>Featured simulations</h2>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge feature-badge">SNVs, indels (including complex)</span>
+              <span class="badge feature-badge">CNV simulation</span>
+              <span class="badge feature-badge">VAFs adjusted for SNV–CNV overlap</span>
+              <span class="badge feature-badge">Multithreaded execution</span>
+
+          <div class="section-card p-1 p-md-1">
+
             <div class="row g-4">
               <!-- SNV -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
@@ -191,6 +185,28 @@
                   </figure>
                 </div>
               </div>
+                            <!-- cxInDels (complex insertion + deletion at same locus) -->
+              <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-2 border rounded-3 h-100">
+                  <figure class="text-center">
+                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="cxindelTitle cxindelDesc">
+                      <title id="cxindelTitle">Complex InDels (cxInDels)</title>
+                      <desc id="cxindelDesc">Deletion in REF; smaller insertion in ALT at same locus</desc>
+                      <text x="18" y="44" class="variant-legend">REF</text>
+                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
+                      <rect x="80" y="32" width="80" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
+
+                      <text x="120" y="42" text-anchor="middle" dominant-baseline="middle" class="variant-label">DEL</text>
+
+                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <rect x="80" y="84" width="40" height="12" rx="3" class="variant-accent"/>
+                      <text x="100" y="90" text-anchor="middle" dominant-baseline="middle" class="variant-label">INS</text>
+                    </svg>
+                    <figcaption class="fw-semibold">cxInDels</figcaption>
+                  </figure>
+                </div>
+              </div>
 
               <!-- Deletion (SV) -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
@@ -205,8 +221,8 @@
                       <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
                       <rect x="70" y="32" width="100" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
                       <!-- connectors from REF deletion edges to a single ALT center point -->
-                      <line x1="70" y1="48" x2="120" y2="90" stroke="var(--brand-600)" stroke-width="1"/>
-                      <line x1="170" y1="48" x2="120" y2="90" stroke="var(--brand-600)" stroke-width="1"/>
+                      <line x1="70" y1="48" x2="120" y2="88" stroke="var(--brand-600)" stroke-width="1"/>
+                      <line x1="170" y1="48" x2="120" y2="88" stroke="var(--brand-600)" stroke-width="1"/>
                       <!-- ALT track with omitted (deleted) segment -->
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <line x1="40" y1="90" x2="70" y2="90" class="variant-track variant-alt"/>
@@ -229,9 +245,9 @@
                       <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
                       <rect x="70" y="32" width="60" height="16" rx="4" class="variant-neutral"/>
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
-                      <rect x="70" y="82" width="60" height="16" rx="4" class="variant-accent"/>
+                      <rect x="70" y="82" width="60" height="16" rx="4" class="variant-neutral"/>
                       <rect x="132" y="82" width="60" height="16" rx="4" class="variant-accent"/>
-                      <text x="100" y="76" text-anchor="middle" class="variant-label">DUP</text>
+                      <text x="162" y="76" text-anchor="middle" class="variant-label">DUP</text>
                     </svg>
                     <figcaption class="fw-semibold">Tandem duplication</figcaption>
                   </figure>
@@ -252,7 +268,6 @@
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <rect x="70" y="82" width="60" height="16" rx="4" class="variant-accent"/>
                       <rect x="70" y="64" width="60" height="16" rx="4" class="variant-accent"/>
-                      <rect x="70" y="46" width="60" height="16" rx="4" class="variant-accent"/>
                       <text x="100" y="42" text-anchor="middle" class="variant-label">×3</text>
                     </svg>
                     <figcaption class=" fw-semibold">CNV (gain)</figcaption>
@@ -299,124 +314,231 @@
                       <rect x="80" y="32" width="40" height="16" rx="3" class="variant-neutral"/>
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <rect x="150" y="82" width="40" height="16" rx="3" class="variant-accent"/>
-                      <path d="M100,48 C120,66 140,74 170,90" stroke="var(--brand-600)" stroke-width="2" fill="none" marker-end="url(#arrowSimple)"/>
+                      <path d="M100,48 C100,66 140,74 170,90" stroke="var(--brand-600)" stroke-width="2" fill="none" marker-end="url(#arrowSimple)"/>
                     </svg>
                     <figcaption class="fw-semibold">Translocation</figcaption>
                   </figure>
                 </div>
               </div>
 
-              <!-- cxInDels (complex insertion + deletion at same locus) -->
-              <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
-                  <figure class="text-center">
-                    <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="cxindelTitle cxindelDesc">
-                      <title id="cxindelTitle">Complex InDels (cxInDels)</title>
-                      <desc id="cxindelDesc">Deletion in REF; smaller insertion in ALT at same locus</desc>
-                      <text x="18" y="44" class="variant-legend">REF</text>
-                      <text x="18" y="94" class="variant-legend">ALT</text>
-                      <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
-                      <rect x="80" y="32" width="80" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
 
-                          <text x="120" y="42" text-anchor="middle" dominant-baseline="middle" class="variant-label">DEL</text>
+            </div>
 
-                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
-                      <rect x="110" y="84" width="40" height="12" rx="3" class="variant-accent"/>
-                      <text x="130" y="90" text-anchor="middle" dominant-baseline="middle" class="variant-label">INS</text>
-                    </svg>
-                    <figcaption class="fw-semibold">cxInDels</figcaption>
-                  </figure>
+          </div>
+        </section>
+
+        <section id="install" class="anchor-offset">
+            <h3 class="mb-3 mt-5"><i class="bi bi-download me-2"></i>Install</h3>
+            <div class="code-wrap">
+              <pre class="terminal">$ pip3 install -r requirements.txt</pre>
+            </div>
+        </section>
+
+        <section id="usage" class="anchor-offset">
+          <h3 class="mb-3 mt-5"><i class="bi bi-play me-2"></i>Usage</h3>
+
+          <ul class="nav nav-tabs" id="simTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="tab-snv" data-bs-toggle="tab" data-bs-target="#pane-snv" type="button" role="tab" aria-controls="pane-snv" aria-selected="true">
+                SNVs / Indels
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab-sv" data-bs-toggle="tab" data-bs-target="#pane-sv" type="button" role="tab" aria-controls="pane-sv" aria-selected="false">
+                SVs / CNVs
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content border-start border-end border-bottom p-3 rounded-bottom" id="simTabsContent">
+            <!-- SNV/Indel TAB -->
+            <div class="tab-pane fade show active" id="pane-snv" role="tabpanel" aria-labelledby="tab-snv" tabindex="0">
+              <h5 class="mb-3"><b>Step&nbsp;1: Create a simulation config</b></h5>
+              This first step consists on the generation of a config file (tabulated) with all the SNV/Indels to be simulated.
+              <p>Note that you can control several parameters.</p>
+              <p>In order to execute this script:</p>
+
+              <div class="terminal mt-2 mb-2">$ python3 scripts/generate_snv_indels_config.py </div>
+
+              <h6 class="mt-4">Parameters:</h6>
+              <div class="row">
+                <div class="col-md-6">
+                  <dl class="row small mb-0">
+                    <dt class="col-4"><code>-i, --indir</code></dt>
+                    <dd class="col-8">Directory with BAMs (one sample per BAM). </dd>
+
+                    <dt class="col-4"><code>-l, --list</code></dt>
+                    <dd class="col-8">Text file: one absolute BAM path per line. </dd>
+
+                    <dt class="col-4"><code>-b, --bed</code></dt>
+                    <dd class="col-8">ROI BED file. <span class="badge text-bg-primary">required</span></dd>
+
+                    <dt class="col-4"><code>-g, --genome</code></dt>
+                    <dd class="col-8">Reference genome FASTA. <span class="badge text-bg-primary">required</span></dd>
+
+                    <dt class="col-4"><code>--num_variants</code></dt>
+                    <dd class="col-8">Total variants to simulate. <span class="badge text-bg-primary">required</span></dd>
+
+                    <dt class="col-4"><code>--proportions</code></dt>
+                    <dd class="col-8">Comma-separated clone fractions (e.g., <code>0.7,0.2,0.1</code>); should sum ≈ 1. <span class="badge text-bg-primary">required</span></dd>
+                  </dl>
                 </div>
+                <div class="col-md-6">
+                  <dl class="row small mb-0">
+                    <dt class="col-4"><code>--insertion_rate</code></dt>
+                    <dd class="col-8">Proportion of insertions (default: <code>0.45</code>).</dd>
+
+                    <dt class="col-4"><code>--deletion_rate</code></dt>
+                    <dd class="col-8">Proportion of deletions (default: <code>0.45</code>).</dd>
+
+                    <dt class="col-4"><code>--delins_rate</code></dt>
+                    <dd class="col-8">Proportion of delins (default: <code>0.10</code>).</dd>
+
+                    <dt class="col-4"><code>--hom_rate</code></dt>
+                    <dd class="col-8">Fraction of homozygous variants (default: <code>0.10</code>).</dd>
+
+                    <dt class="col-4"><code>--autosomes</code></dt>
+                    <dd class="col-8">If set, restrict to autosomes.</dd>
+
+                    <dt class="col-4"><code>--chromosome</code></dt>
+                    <dd class="col-8">Limit variant placement to a specific chromosome (e.g., <code>chr12</code>).</dd>
+
+                    <dt class="col-4"><code>--output</code></dt>
+                    <dd class="col-8">Path to write TSV (e.g., <code>variants_config.tsv</code>). <span class="badge text-bg-danger">required</span></dd>
+                  </dl>
+                </div>
+              </div>
+              
+              <div class="alert alert-info small mb-3" style="padding:5px;">
+                <i class="bi bi-info-circle me-1" ></i>
+                <b>Tip:</b> Exactly one of <code>--indir</code> or <code>--list</code> must be provided. 
+                <code>--proportions</code> controls clonal mixture used to derive per-variant VAFs.
+              </div>
+
+
+            <h5 class="mt-5 mb-2">Example of a config output file:</h5>
+              <div class="code-wrap mt-4 mb-2">
+  <pre class="mb-0"><code id="snv-code" class="language-text">SAMPLE CHR POS REF ALT VAF TYPE CLONE
+/home/user/input/sample1.bam	chr9	108358932	ACAGTGGGTATGTAGAATAAACAAGAAATTTCTCA	ATGGGCAATT	0.4621	delins	clone1
+/home/user/input/sample2.bam	chr1	228475638	CTTCTGCCACCCTCACAGTGACT	CTTCTGTTCTCCTGCTTG	0.5516	delins	clone1</code></pre>
               </div>
             </div>
 
-          </div>
-        </section>
-        <section id="install" class="anchor-offset">
-          <div class="section-card p-4 p-md-5">
+            <!-- SV/CNV TAB -->
+            <div class="tab-pane fade" id="pane-sv" role="tabpanel" aria-labelledby="tab-sv" tabindex="0">
+              <h5 class="mb-3">Step&nbsp;1: Create a simulation config</h5>
+              <p>For SV/CNV we also need to create a config file.</p>
+              <p>In order to execute this script:</p>
+                            
+              <div class="code-wrap mb-3">
+                <div class="terminal mt-2 mb-2">$ python3 scripts/generate_sv_config.py </div>
+              </div>
 
-            <h2 class="mb-3"><i class="bi bi-download me-2"></i>Install</h2>
-            <div class="code-wrap">
-              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#install-code-2"><i class="bi bi-clipboard"></i> Copy</button>
-              <pre class="mb-0"><code id="install-code-2" class="language-bash">$ pip3 install -r requirements.txt</code></pre>
+              <div class="alert alert-info small mt-4 mb-3" style="padding:5px;">
+                <i class="bi bi-info-circle me-1"></i>
+                <b>Rates</b> are proportions (0–1) for each SV class. If providing 
+                <code>--balanced_translocation_rate</code>/<code>--whole_arm_rate</code>, they override how <code>--translocation_rate</code> is split.
+              </div>
+
+              <h6 class="mt-4">Parameters:</h6>
+              <div class="row">
+                <div class="col-md-6">
+                  <dl class="row small mb-0">
+                    <dt class="col-5"><code>-i, --indir</code></dt>
+                    <dd class="col-7">Directory with BAMs. <span class="badge text-bg-danger">required</span></dd>
+
+                    <dt class="col-5"><code>-b, --bed</code></dt>
+                    <dd class="col-7">ROI BED file. <span class="badge text-bg-primary">required</span></dd>
+
+                    <dt class="col-5"><code>--num_variants</code></dt>
+                    <dd class="col-7">Total SV events to simulate. <span class="badge text-bg-primary">required</span></dd>
+
+                    <dt class="col-5"><code>--proportions</code></dt>
+                    <dd class="col-7">Clone fractions (e.g., <code>0.8,0.2</code>); should sum ≈ 1. <span class="badge text-bg-primary">required</span></dd>
+
+                    <dt class="col-5"><code>--genome_version</code></dt>
+                    <dd class="col-7">Reference tag for placement (choices: <code>hg19</code>, <code>hg38</code>; default <code>hg19</code>).</dd>
+
+                    <dt class="col-5"><code>--seed</code></dt>
+                    <dd class="col-7">Random seed for reproducibility (optional).</dd>
+
+                    <dt class="col-5"><code>--insertion_rate</code></dt>
+                    <dd class="col-7">Proportion of insertions (default <code>0.20</code>).</dd>
+
+                    <dt class="col-5"><code>--deletion_rate</code></dt>
+                    <dd class="col-7">Proportion of deletions (default <code>0.20</code>).</dd>
+
+                    <dt class="col-5"><code>--duplication_rate</code></dt>
+                    <dd class="col-7">Proportion of duplications (default <code>0.20</code>).</dd>
+
+                    <dt class="col-5"><code>--inversion_rate</code></dt>
+                    <dd class="col-7">Proportion of inversions (default <code>0.20</code>).</dd>
+
+                    <dt class="col-5"><code>--translocation_rate</code></dt>
+                    <dd class="col-7">Total proportion for translocations (default <code>0.20</code>).</dd>
+
+                    <dt class="col-5"><code>--balanced_translocation_rate</code></dt>
+                    <dd class="col-7">Override portion of translocations that are balanced (optional).</dd>
+                  </dl>
+                </div>
+                <div class="col-md-6">
+                  <dl class="row small mb-0">
+                    <dt class="col-5"><code>--whole_arm_rate</code></dt>
+                    <dd class="col-7">Override portion that are whole-arm/single-junction (optional).</dd>
+
+                    <dt class="col-5"><code>--minsize</code>/<code>--maxsize</code></dt>
+                    <dd class="col-7">Size bounds for deletions/duplications/inversions (bp).</dd>
+
+                    <dt class="col-5"><code>--minins</code>/<code>--maxins</code></dt>
+                    <dd class="col-7">Inserted sequence length bounds (bp).</dd>
+
+                    <dt class="col-5"><code>--mindist</code></dt>
+                    <dd class="col-7">Minimum inter-breakpoint distance for translocations (bp).</dd>
+
+                    <dt class="col-5"><code>--ntmin</code>/<code>--ntmax</code></dt>
+                    <dd class="col-7">Range for templated/inserted nucleotides.</dd>
+
+                    <dt class="col-5"><code>--chromosome</code></dt>
+                    <dd class="col-7">Restrict events to a specific chromosome (optional).</dd>
+
+                    <dt class="col-5"><code>--autosomes</code></dt>
+                    <dd class="col-7">If set, restrict to autosomes.</dd>
+
+                    <dt class="col-5"><code>--chromfile</code></dt>
+                    <dd class="col-7">Chromosome sizes file (if required by placement logic).</dd>
+
+                    <dt class="col-5"><code>--mechanism</code></dt>
+                    <dd class="col-7">Placement strategy (e.g., <code>random</code>).</dd>
+                  </dl>
+                </div>
+              </div>
+
+            <h5 class="mt-5 mb-2">Example of a config file for CNV/SV</h5>
+            <div class="code-wrap mb-2">
+<pre class="mb-0"><code id="cnv-code" class="language-text">SAMPLE	CHR1	START1	END1	CHR2	START2	END2	SVTYPE	SVID	PLOIDY	SV_MECHANISM	NTINS	HOMOLOGY	CLONE	CLONAL_PROPORTION	ADDITIONAL_INFO
+/home/user/input/sample1.bam	chr6	7559857	7572150	.	.	.	DEL	DSP_del	1	random	GAATTTTAGACTTCGGGGA	.	clone1	1	.
+/home/user/input/sample2.bam	chr6	7583260	7584260	chr3	38639314	38640448	TRA	DSP_del	1	random	GAATTTTAGACTTCGGGGA	.	clone1	1	.</code></pre>
             </div>
-          </div>
-        </section>
 
-        <!-- Usage -->
-        <section id="usage" class="anchor-offset mb-5">
-          <div class="section-card p-4 p-md-5">
-            <h2 class="mb-3"><i class="bi bi-terminal me-2"></i>Usage</h2>
-
-
-            <!-- Options table -->
-            <div id="options" class="table-responsive">
-              <table class="table table-striped table-bordered table-sm align-middle">
-                <thead>
-                  <tr>
-                    <th style="width: 22%">Option</th>
-                    <th style="width: 18%">Type</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td><code>-v, --variants</code></td><td>TEXT</td><td>Tab-separated file listing BAM files and variants <span class="badge text-bg-danger">required</span></td></tr>
-                  <tr><td><code>-t, --threads</code></td><td>INTEGER</td><td>Total number of threads</td></tr>
-                  <tr><td><code>-r, --reference</code></td><td>TEXT</td><td>Genome reference in FASTA format <span class="badge text-bg-danger">required</span></td></tr>
-                  <tr><td><code>-o, --output</code></td><td>TEXT</td><td>Output directory for simulated BAMs and phased VCFs <span class="badge text-bg-danger">required</span></td></tr>
-                  <tr><td><code>-s, --suffix</code></td><td>TEXT</td><td>Suffix for simulated BAM files (default <code>.simulated</code>)</td></tr>
-                  <tr><td><code>--input_vcf_list</code></td><td>TEXT</td><td>File listing input VCFs or directory containing VCFs</td></tr>
-                  <tr><td><code>--genome_version</code></td><td>TEXT</td><td>Genome version for phasing (e.g., <code>hg38</code>, <code>hg19</code>)</td></tr>
-                  <tr><td><code>--map_dir</code></td><td>TEXT</td><td>Directory containing PLINK <code>.map</code> files for phasing</td></tr>
-                  <tr><td><code>--ref_dir</code></td><td>TEXT</td><td>Directory containing <code>.bref3</code> reference files for phasing</td></tr>
-                </tbody>
-              </table>
             </div>
-          </div>
-        </section>
 
-        <!-- Quick start -->
-        <section id="quickstart" class="anchor-offset mb-5">
-          <div class="section-card p-4 p-md-5">
-            <h2 class="mb-3"><i class="bi bi-lightning-charge me-2"></i>Quick start</h2>
-            <div class="code-wrap">
-              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#quick-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="quick-code" class="language-bash">$ bamulator \
-  --variants variants.txt \
+          <!-- Step 2 (common) -->
+          <h5 class="mt-4"><b>Step&nbsp;2: Run bamulator</b></h5>
+          <div class="code-wrap">
+          <pre class="terminal">$ bamulator \
+  --variants variants_config.tsv \
   --reference /path/to/ref.fasta \
-  --threads 4 \
+  --threads 8 \
   --suffix .simulated \
-  --output /path/to/outdir</code></pre>
-            </div>
-            <p class="mt-3 text-secondary">Output BAMs are named <code>&lt;sample&gt;&lt;suffix&gt;.bam</code> (default suffix: <code>.simulated</code>).</p>
+  --output /path/to/outdir
+          </pre>
+          <div class="mt-3 small text-secondary">
+            Outputs are named <code>&lt;sample&gt;&lt;suffix&gt;.bam</code> (default suffix: <code>.simulated</code>).  
+            To enable phasing, also pass <code>--input_vcf_list</code>, <code>--genome_version</code>, <code>--map_dir</code>, and <code>--ref_dir</code>.
           </div>
         </section>
+        
 
-        <!-- Variant config -->
-        <section id="variants" class="anchor-offset mb-5">
-          <div class="section-card p-4 p-md-5">
-            <h2 class="mb-3"><i class="bi bi-sliders me-2"></i>Variant config (<code>variants.txt</code>)</h2>
-            <p>One variant per line, tab-separated.</p>
-
-            <h5 class="mt-4">SNVs / small indels</h5>
-            <div class="code-wrap mb-2">
-              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#snv-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="snv-code" class="language-text">/home/user/input/sample1.bam  chr7  55242467  GAATTAAGAGAAGCAACA  GTTGCT
-/home/user/input/sample2.bam  chr18 29104352  A T</code></pre>
-            </div>
-            <p class="text-secondary">Columns: <span class="kbd">BAM</span>, <span class="kbd">chrom</span>, <span class="kbd">pos (1-based)</span>, <span class="kbd">REF</span>, <span class="kbd">ALT</span></p>
-
-            <h5 class="mt-4">CNVs</h5>
-            <div class="code-wrap mb-2">
-              <button class="btn btn-sm btn-secondary copy-btn" data-copy="#cnv-code"><i class="bi bi-clipboard"></i> Copy</button>
-<pre class="mb-0"><code id="cnv-code" class="language-text">/home/user/input/sample3.bam  chr1  156082722 156089883 DEL SOS1_7_to_8 1 multiple
-/home/user/input/sample4.bam  chr7  150652435 150661275 DUP TAZ_1_to_4  1 multiple</code></pre>
-            </div>
-            <p class="text-secondary">Columns: <span class="kbd">BAM</span>, <span class="kbd">chrom</span>, <span class="kbd">start</span>, <span class="kbd">end</span>, <span class="kbd">type</span> (<code>DEL|DUP</code>), <span class="kbd">label</span>, <span class="kbd">copy-number/state</span>, <span class="kbd">mode</span></p>
-          </div>
-        </section>
-
-        <!-- Phasing -->
+        <!-- Phasing
         <section id="phasing" class="anchor-offset mb-5">
           <div class="section-card p-4 p-md-5">
             <h2 class="mb-3"><i class="bi bi-diagram-3 me-2"></i>Phasing (optional)</h2>
@@ -430,26 +552,15 @@
               <i class="bi bi-info-circle me-2"></i>Phased VCFs are written to <code>--output</code>.
             </div>
           </div>
-        </section>
+        </section> -->
 
         <!-- Visuals -->
         
-
         <!-- Features -->
-        <section id="features" class="anchor-offset mb-5">
-          <div class="section-card p-4 p-md-5">
-            <h2 class="mb-3"><i class="bi bi-stars me-2"></i>Features</h2>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge feature-badge">SNVs, indels (including complex)</span>
-              <span class="badge feature-badge">CNV simulation</span>
-              <span class="badge feature-badge">VAFs adjusted for SNV–CNV overlap</span>
-              <span class="badge feature-badge">Multithreaded execution</span>
-            </div>
-          </div>
-        </section>
+
 
         <!-- Limitations -->
-        <section id="limitations" class="anchor-offset mb-5">
+        <!-- <section id="limitations" class="anchor-offset mb-5">
           <div class="section-card p-4 p-md-5">
             <h2 class="mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
             <ul class="list-group list-group-flush">
@@ -458,10 +569,10 @@
               <li class="list-group-item">Copy-number changes &gt; 3 not supported; no homo/hemizygous deletions</li>
             </ul>
           </div>
-        </section>
+        </section> -->
 
         <!-- Helper script -->
-        <section id="helper" class="anchor-offset mb-5">
+        <!-- <section id="helper" class="anchor-offset mb-5">
           <div class="section-card p-4 p-md-5">
             <h2 class="mb-3"><i class="bi bi-tools me-2"></i>Helper script</h2>
             <p>Generate CNV configs:</p>
@@ -474,11 +585,10 @@
   --mode &lt;single|multiple&gt; &gt; variants.txt</code></pre>
             </div>
           </div>
-        </section>
+        </section> -->
 
         <footer class="py-4 text-center">
-          <div class="small">&copy; <span id="year"></span> BAMulator. Built with ❤️ on GitHub Pages &amp; Bootstrap.</div>
-          <div class="small">To publish: place this file at <code>/docs/index.html</code> and enable Pages (Deploy from branch → <code>main</code> → folder <code>/docs</code>).</div>
+
         </footer>
       </section>
     </div>
