@@ -22,7 +22,7 @@
     :root { --bs-primary: #10b981; --bs-primary-rgb: 16,185,129; --bs-success: #10b981; --bs-link-color: #059669; --bs-link-hover-color: #047857; --brand-50:#ecfdf5; --brand-100:#d1fae5; --brand-200:#a7f3d0; --brand-300:#6ee7b7; --brand-400:#34d399; --brand-500:#10b981; --brand-600:#059669; --brand-700:#047857; --surface-0:#ffffff; --surface-1:#f7fbf9; --line:#e6f1ea; }
     body {
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: 
+      background:
         radial-gradient(1000px 500px at 110% -10%, rgba(16,185,129,0.12), transparent 60%),
         radial-gradient(700px 400px at -10% 0%, rgba(16,185,129,0.08), transparent 60%),
         linear-gradient(180deg, var(--surface-0), var(--surface-1));
@@ -30,11 +30,11 @@
       background-attachment: fixed;
     }
     .navbar-brand span { font-weight: 700; letter-spacing: .2px; }
-    .hero { background: 
+    .hero { background:
         radial-gradient(1200px 600px at 110% -10%, rgba(16,185,129,0.12), transparent 60%),
         radial-gradient(900px 500px at -10% -20%, rgba(16,185,129,0.12), transparent 60%),
         linear-gradient(180deg, #f3fbf7, #edf8f1); border-bottom: 1px solid var(--line); }
-    .hero.bg-light { background: 
+    .hero.bg-light { background:
         radial-gradient(1200px 600px at 110% -10%, rgba(16,185,129,0.12), transparent 60%),
         radial-gradient(900px 500px at -10% -20%, rgba(16,185,129,0.12), transparent 60%),
         linear-gradient(180deg, #f3fbf7, #edf8f1) !important; }
@@ -55,10 +55,10 @@
     pre { font-size:15px;background: linear-gradient(180deg,#f7fbf9,#f3faf6); border: 1px solid var(--line); border-radius: 10px; }
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
     .copy-btn { position: absolute; right: .75rem; top: .75rem; z-index: 2; }
-    .code-wrap { 
+    .code-wrap {
       position: relative;
      }
-    .anchor-offset { 
+    .anchor-offset {
       scroll-margin-top: 70px;
      }
     .toc { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding-top: 1rem; padding-bottom: 1rem; }
@@ -106,20 +106,18 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero bg-light py-3" id="top">
     <div class="container py-4">
       <div class="row align-items-center g-4">
         <div class="col-lg-10">
           <span class="badge rounded-pill mb-3">Fast BAM variant simulation</span>
-          <h1 class="mb-3">BAMulator 
-            </h1>
+          <h1 class="mb-3">BAMulator </h1>
 
           <h2 class="lead mb-4">Easy and fast simulation of SNVs, Indels, CNVs and SVs into real sequencing data.</h2>
             <div class="d-flex gap-2 flex-wrap">
             <a href="#usage" class="btn btn-primary btn-lg"><i class="bi bi-play-fill me-2"></i>Quick start</a>
           </div>
-          
+
           <div class="mt-3 d-flex flex-wrap align-items-center gap-2" id="badges" data-repo="YOURUSER/YOURREPO" data-docs-url="">
               <!-- Replace data-repo with e.g. youruser/bamulator; set data-docs-url to your docs if not this page -->
               <a class="text-decoration-none" id="star-link" aria-label="Star on GitHub" target="_blank" rel="noopener">
@@ -142,7 +140,7 @@
       <aside class="col-lg-2 d-none d-lg-block">
         <div class="toc">
           <div class="fw-semibold text-uppercase small mb-2">On this page</div>
-          <ul class="list-unstyled lh-lg">            
+          <ul class="list-unstyled lh-lg">
             <li><a href="#features">Features</a></li>
             <li><a href="#install">Install</a></li>
             <li><a href="#usage">Usage</a></li>
@@ -158,16 +156,14 @@
             <h2 class="mb-3"><i class="bi bi-stars me-2"></i>Featured simulations</h2>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge feature-badge">SNVs, indels (including complex)</span>
-              <span class="badge feature-badge">CNV simulation</span>
-              <span class="badge feature-badge">VAFs adjusted for SNV–CNV overlap</span>
-              <span class="badge feature-badge">Multithreaded execution</span>
-
-          <div class="section-card p-1 p-md-1">
+              <span class="badge feature-badge">SVs</span>
+              <span class="badge feature-badge">Allele specific CNVs</span>
+          <div class="section-card p-0 p-md-0">
 
             <div class="row g-4">
               <!-- SNV -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="snvTitle snvDesc">
                       <title id="snvTitle">SNV</title>
@@ -187,7 +183,7 @@
               </div>
                             <!-- cxInDels (complex insertion + deletion at same locus) -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="cxindelTitle cxindelDesc">
                       <title id="cxindelTitle">Complex InDels (cxInDels)</title>
@@ -196,37 +192,35 @@
                       <text x="18" y="94" class="variant-legend">ALT</text>
                       <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
                       <rect x="80" y="32" width="80" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
-
-                      <text x="120" y="42" text-anchor="middle" dominant-baseline="middle" class="variant-label">DEL</text>
-
+                      <text x="118" y="42" text-anchor="middle" dominant-baseline="middle" class="variant-label">DEL</text>
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <rect x="80" y="84" width="40" height="12" rx="3" class="variant-accent"/>
                       <text x="100" y="90" text-anchor="middle" dominant-baseline="middle" class="variant-label">INS</text>
                     </svg>
-                    <figcaption class="fw-semibold">cxInDels</figcaption>
+                    <figcaption class="fw-semibold"> Complex Indels</figcaption>
                   </figure>
                 </div>
               </div>
 
               <!-- Deletion (SV) -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="svdelTitle svdelDesc">
                       <title id="svdelTitle">Deletion </title>
                       <desc id="svdelDesc">Segment marked in REF, removed in ALT</desc>
                       <text x="18" y="44" class="variant-legend">REF</text>
-                      <text x="18" y="94" class="variant-legend">ALT</text>
+                      <text x="38" y="94" class="variant-legend">ALT</text>
                       <!-- REF track with dashed-marked region to be deleted -->
                       <line x1="40" y1="40" x2="220" y2="40" class="variant-track variant-ref"/>
                       <rect x="70" y="32" width="100" height="16" rx="4" fill="#fff" stroke="var(--brand-600)" stroke-dasharray="6 4"/>
                       <!-- connectors from REF deletion edges to a single ALT center point -->
-                      <line x1="70" y1="48" x2="120" y2="88" stroke="var(--brand-600)" stroke-width="1"/>
-                      <line x1="170" y1="48" x2="120" y2="88" stroke="var(--brand-600)" stroke-width="1"/>
+                      <line x1="70" y1="47" x2="120" y2="88" stroke="var(--brand-600)" stroke-width="1"/>
+                      <line x1="170" y1="47" x2="120" y2="88" stroke="var(--brand-600)" stroke-width="1"/>
                       <!-- ALT track with omitted (deleted) segment -->
-                      <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
-                      <line x1="40" y1="90" x2="70" y2="90" class="variant-track variant-alt"/>
-                      <line x1="170" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
+                      <line x1="60" y1="90" x2="180" y2="90" class="variant-track variant-alt"/>
+                      <!-- <line x1="40" y1="90" x2="70" y2="90" class="variant-track variant-alt"/> -->
+                      <!-- <line x1="170" y1="90" x2="220" y2="90" class="variant-track variant-alt"/> -->
                     </svg>
                     <figcaption class=" fw-semibold">Deletion</figcaption>
                   </figure>
@@ -235,7 +229,7 @@
 
               <!-- Tandem Duplication (SV) -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="dupTitle dupDesc">
                       <title id="dupTitle">Tandem Duplication (SV)</title>
@@ -246,7 +240,7 @@
                       <rect x="70" y="32" width="60" height="16" rx="4" class="variant-neutral"/>
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <rect x="70" y="82" width="60" height="16" rx="4" class="variant-neutral"/>
-                      <rect x="132" y="82" width="60" height="16" rx="4" class="variant-accent"/>
+                      <rect x="130" y="82" width="60" height="16" rx="4" class="variant-accent"/>
                       <text x="162" y="76" text-anchor="middle" class="variant-label">DUP</text>
                     </svg>
                     <figcaption class="fw-semibold">Tandem duplication</figcaption>
@@ -256,7 +250,7 @@
 
               <!-- CNV (gain) equal-size copies -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="cnvTitle cnvDesc">
                       <title id="cnvTitle">CNV (gain)</title>
@@ -268,7 +262,7 @@
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <rect x="70" y="82" width="60" height="16" rx="4" class="variant-accent"/>
                       <rect x="70" y="64" width="60" height="16" rx="4" class="variant-accent"/>
-                      <text x="100" y="42" text-anchor="middle" class="variant-label">×3</text>
+                      <!-- <text x="100" y="62" text-anchor="middle" class="variant-label">×3</text> -->
                     </svg>
                     <figcaption class=" fw-semibold">CNV (gain)</figcaption>
                   </figure>
@@ -277,7 +271,7 @@
 
               <!-- Inversion (SV) -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="invTitle invDesc">
                       <title id="invTitle">Inversion (SV)</title>
@@ -298,7 +292,7 @@
 
               <!-- Translocation (SV) simplified: chrA → chrB -->
               <div class="col-12 col-sm-6 col-lg-4 variant-card">
-                <div class="p-2 border rounded-3 h-100">
+                <div class="p-1 border rounded-3 h-100">
                   <figure class="text-center">
                     <svg class="variant-icon" viewBox="0 0 240 130" role="img" aria-labelledby="traTitle traDesc">
                       <title id="traTitle">Translocation (SV)</title>
@@ -314,13 +308,18 @@
                       <rect x="80" y="32" width="40" height="16" rx="3" class="variant-neutral"/>
                       <line x1="40" y1="90" x2="220" y2="90" class="variant-track variant-alt"/>
                       <rect x="150" y="82" width="40" height="16" rx="3" class="variant-accent"/>
-                      <path d="M100,48 C100,66 140,74 170,90" stroke="var(--brand-600)" stroke-width="2" fill="none" marker-end="url(#arrowSimple)"/>
+                      <path d="M100,48 C100,66 110,74 150,82" stroke="var(--brand-600)" stroke-width="1.5" fill="none" marker-end="url(#arrowSimple)"/>
                     </svg>
                     <figcaption class="fw-semibold">Translocation</figcaption>
                   </figure>
                 </div>
               </div>
-
+            <div class="col-12 col-sm-6 col-lg-4 variant-card">
+                <div class="p-1 border rounded-3 h-100">
+                <!-- ASCNA multi-panel (publication style) -->
+              <figure id="ascna-80" class="text-center my-3"></figure>
+                              </div>
+            </div>
 
             </div>
 
@@ -378,6 +377,9 @@
                     <dt class="col-4"><code>--num_variants</code></dt>
                     <dd class="col-8">Total variants to simulate. <span class="badge text-bg-primary">required</span></dd>
 
+                    <dt class="col-4"><code>--output</code></dt>
+                    <dd class="col-8">Path to write TSV (e.g., <code>variants_config.tsv</code>). <span class="badge text-bg-primary">required</span></dd>
+
                     <dt class="col-4"><code>--proportions</code></dt>
                     <dd class="col-8">Comma-separated clone fractions (e.g., <code>0.7,0.2,0.1</code>); should sum ≈ 1. <span class="badge text-bg-primary">required</span></dd>
                   </dl>
@@ -402,15 +404,13 @@
                     <dt class="col-4"><code>--chromosome</code></dt>
                     <dd class="col-8">Limit variant placement to a specific chromosome (e.g., <code>chr12</code>).</dd>
 
-                    <dt class="col-4"><code>--output</code></dt>
-                    <dd class="col-8">Path to write TSV (e.g., <code>variants_config.tsv</code>). <span class="badge text-bg-danger">required</span></dd>
                   </dl>
                 </div>
               </div>
-              
+
               <div class="alert alert-info small mb-3" style="padding:5px;">
                 <i class="bi bi-info-circle me-1" ></i>
-                <b>Tip:</b> Exactly one of <code>--indir</code> or <code>--list</code> must be provided. 
+                <b>Tip:</b> Exactly one of <code>--indir</code> or <code>--list</code> must be provided.
                 <code>--proportions</code> controls clonal mixture used to derive per-variant VAFs.
               </div>
 
@@ -425,17 +425,17 @@
 
             <!-- SV/CNV TAB -->
             <div class="tab-pane fade" id="pane-sv" role="tabpanel" aria-labelledby="tab-sv" tabindex="0">
-              <h5 class="mb-3">Step&nbsp;1: Create a simulation config</h5>
+              <h5 class="mb-3"><b>Step&nbsp;1: Create a simulation config</h5></b>
               <p>For SV/CNV we also need to create a config file.</p>
               <p>In order to execute this script:</p>
-                            
+
               <div class="code-wrap mb-3">
                 <div class="terminal mt-2 mb-2">$ python3 scripts/generate_sv_config.py </div>
               </div>
 
               <div class="alert alert-info small mt-4 mb-3" style="padding:5px;">
                 <i class="bi bi-info-circle me-1"></i>
-                <b>Rates</b> are proportions (0–1) for each SV class. If providing 
+                <b>Rates</b> are proportions (0–1) for each SV class. If providing
                 <code>--balanced_translocation_rate</code>/<code>--whole_arm_rate</code>, they override how <code>--translocation_rate</code> is split.
               </div>
 
@@ -444,7 +444,7 @@
                 <div class="col-md-6">
                   <dl class="row small mb-0">
                     <dt class="col-5"><code>-i, --indir</code></dt>
-                    <dd class="col-7">Directory with BAMs. <span class="badge text-bg-danger">required</span></dd>
+                    <dd class="col-7">Directory with BAMs. <span class="badge text-bg-primary">required</span></dd>
 
                     <dt class="col-5"><code>-b, --bed</code></dt>
                     <dd class="col-7">ROI BED file. <span class="badge text-bg-primary">required</span></dd>
@@ -532,11 +532,11 @@
   --output /path/to/outdir
           </pre>
           <div class="mt-3 small text-secondary">
-            Outputs are named <code>&lt;sample&gt;&lt;suffix&gt;.bam</code> (default suffix: <code>.simulated</code>).  
+            Outputs are named <code>&lt;sample&gt;&lt;suffix&gt;.bam</code> (default suffix: <code>.simulated</code>).
             To enable phasing, also pass <code>--input_vcf_list</code>, <code>--genome_version</code>, <code>--map_dir</code>, and <code>--ref_dir</code>.
           </div>
         </section>
-        
+
 
         <!-- Phasing
         <section id="phasing" class="anchor-offset mb-5">
@@ -555,7 +555,7 @@
         </section> -->
 
         <!-- Visuals -->
-        
+
         <!-- Features -->
 
 
@@ -649,5 +649,190 @@
       docsLink.href = docsUrl;
     })();
   </script>
+
+
+<script>
+(function(){
+  // ---- colors (override with :root { --hap-major: ...; --hap-minor: ... } if desired) ----
+  const css = getComputedStyle(document.documentElement);
+  const HAP_MAJOR = (css.getPropertyValue('--hap-major') || '').trim() || '#2563eb'; // blue-600
+  const HAP_MINOR = (css.getPropertyValue('--hap-minor') || '').trim() || '#f97316'; // orange-500
+  const GRID = '#e6f1ea', TEXT = '#334155';
+
+  // ---- geometry ----
+  const W=540, H=190;
+  const PAD={t:30,r:18,b:24,l:32};
+  const BAF_H=110, GAP=12, LRR_H=90;
+  const BAF_TOP=PAD.t, LRR_TOP=PAD.t+BAF_H+GAP;
+  const innerW = W - PAD.l - PAD.r;
+  const SEG_GAP_PX = 10; // gap between segments
+
+  // ---- segments (edit len to change relative widths) ----
+  const segments = [
+    {label:'Diploid 1:1',  M:1, m:1, Ct:2, len:12},
+    {label:'Gain 3:1',     M:3, m:1, Ct:4, len:22},
+    {label:'Hemidel 1:0',  M:1, m:0, Ct:1, len:9},
+  ];
+  const totalLen = segments.reduce((a,s)=>a+s.len,0);
+  const contentW = innerW - SEG_GAP_PX*(segments.length-1);
+
+  // compute pixel starts/widths per segment
+  let cursor = PAD.l;
+  segments.forEach((s,i)=>{
+    s.w = contentW * (s.len/totalLen);
+    s.x0 = cursor;
+    s.x1 = cursor + s.w;
+    cursor = s.x1 + SEG_GAP_PX;
+  });
+
+  // ---- purity ----
+  const p = 0.80; // 80%
+
+  // ---- rng ----
+  function mulberry32(a){return function(){let t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296}}
+  const rand = mulberry32(4242);
+  function r(){return rand();}
+  function rnorm(){let u=0,v=0;while(!u)u=r();while(!v)v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+
+  // ---- models ----
+  function bafMeans(p,M,m,Ct){
+    const denom = p*Ct + (1-p)*2;
+    const muMinor = (p*m + (1-p)*1)/denom;
+    const muMajor = (p*M + (1-p)*1)/denom;
+    return [muMinor, muMajor];
+  }
+  const bafSD = mu => 0.012 + 0.055*(1 - Math.abs(mu-0.5)/0.5); // broader near 0.5, tight at extremes
+  function genBafPoints(x0,x1,mu,n){
+    const sd=bafSD(mu), pts=[];
+    for(let i=0;i<n;i++){
+      const x = x0 + r()*(x1-x0);
+      const y = clamp(mu + sd*rnorm(), 0.01, 0.99);
+      pts.push([x,y]);
+    }
+    return pts;
+  }
+  function lrrMean(p,Ct){
+    const rel = (p*Ct + (1-p)*2)/2.0;
+    return Math.log(rel)/Math.log(2); // log2 ratio
+  }
+  function genLrrPoints(x0,x1,mu,n,color,arr){
+    const sd=0.09;
+    for(let i=0;i<n;i++){
+      const x = x0 + r()*(x1-x0);
+      const y = mu + sd*rnorm();
+      arr.push([x,y,color]);
+    }
+  }
+
+  // ---- scales ----
+  const yBAF = y => BAF_TOP + (1-y)*BAF_H;                 // 0→bottom,1→top
+  const yLRR = y => { const ymin=-2,ymax=2,t=(y-ymin)/(ymax-ymin); return LRR_TOP + (1-t)*LRR_H; };
+
+  // ---- svg ----
+  const mount = document.getElementById('ascna-80');
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.setAttribute('style','width:100%;height:auto');
+  mount.appendChild(svg);
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g'); 
+  svg.appendChild(g);
+
+  // axis labels (left only)
+  function label(x,y,text){
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',x); t.setAttribute('y',y);
+    t.setAttribute('fill',"grey"); t.setAttribute('font-size','18');
+    t.setAttribute('font-weight','700');
+    t.setAttribute('font-family','Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial');
+    t.textContent=text; g.appendChild(t);
+  }
+  label(PAD.l-22, BAF_TOP-6, 'BAF');
+  label(PAD.l-22, LRR_TOP-6, 'LRR');
+
+  // midlines
+  function hline(y, dash=null){
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',PAD.l); l.setAttribute('x2',W-PAD.r);
+    l.setAttribute('y1',y); l.setAttribute('y2',y);
+    l.setAttribute('stroke',GRID); l.setAttribute('stroke-width','1');
+    if(dash) l.setAttribute('stroke-dasharray',dash);
+    g.appendChild(l);
+  }
+  hline(yBAF(0.5)); // BAF 0.5
+  hline(yLRR(0));   // LRR 0
+
+  // vertical boundaries
+  segments.slice(1).forEach(s=>{
+    const v=document.createElementNS('http://www.w3.org/2000/svg','line');
+    v.setAttribute('x1',s.x0-SEG_GAP_PX/2); v.setAttribute('x2',s.x0-SEG_GAP_PX/2);
+    v.setAttribute('y1',BAF_TOP); v.setAttribute('y2',LRR_TOP+LRR_H);
+    v.setAttribute('stroke',GRID); v.setAttribute('stroke-width','1');
+    g.appendChild(v);
+  });
+
+  // ---- draw points ----
+  const fragBAF=document.createDocumentFragment();
+  const fragLRR=document.createDocumentFragment();
+
+  segments.forEach(seg=>{
+    const {x0,x1,M,m,Ct} = seg;
+
+    // BAF clusters
+    const [muMinor, muMajor] = bafMeans(p,M,m,Ct);
+    // equal weights except LOH/hemidel (skew to major)
+    let wMinor=0.5, wMajor=0.5;
+    if(m===0){ wMinor=0.1; wMajor=0.9; }
+    const N=260, nMinor=Math.round(N*wMinor), nMajor=N-nMinor;
+
+    const bafMinor = genBafPoints(x0,x1,muMinor,nMinor);
+    const bafMajor = genBafPoints(x0,x1,muMajor,nMajor);
+
+    // BAF draw (minor=orange, major=blue)
+    for(const [x,y] of bafMinor){
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',x); c.setAttribute('cy',yBAF(y));
+      c.setAttribute('r','1.6'); c.setAttribute('fill',"blue");
+      c.setAttribute('opacity','0.22'); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-opacity','0.25'); c.setAttribute('stroke-width','0.5');
+      fragBAF.appendChild(c);
+    }
+    for(const [x,y] of bafMajor){
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',x); c.setAttribute('cy',yBAF(y));
+      c.setAttribute('r','1.6'); c.setAttribute('fill',"green");
+      c.setAttribute('opacity','0.42'); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-opacity','0.25'); c.setAttribute('stroke-width','0.5');
+      fragBAF.appendChild(c);
+    }
+
+    // LRR points — color by haplotype, counts proportional to copies (if m=0, only major)
+    const muLRR = lrrMean(p, Ct);
+    const totalCopies = Math.max(1, M + m);
+    const LRR_N = 220;
+    const nMaj = Math.max(1, Math.round(LRR_N * (M/totalCopies)));
+    const nMin = m>0 ? Math.max(1, LRR_N - nMaj) : 0;
+
+    const lrrPts=[];
+    genLrrPoints(x0,x1,muLRR,nMaj,"green",lrrPts);
+    if(nMin>0) genLrrPoints(x0,x1,muLRR,nMin,"blue",lrrPts);
+
+    for(const [x,y,color] of lrrPts){
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',x); c.setAttribute('cy',yLRR(y));
+      c.setAttribute('r','1.85'); c.setAttribute('fill',color);
+      c.setAttribute('opacity','0.48'); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-opacity','0.30'); c.setAttribute('stroke-width','0.5');
+      fragLRR.appendChild(c);
+    }
+  });
+
+  g.appendChild(fragBAF);
+  g.appendChild(fragLRR);
+    // add figcaptio
+  const cap = document.createElement('figcaption');
+  cap.className = 'fw-semibold mt-3';
+  cap.textContent = 'Allele specific CNA';
+  mount.appendChild(cap);
+})();
+</script>
+
 </body>
 </html>
