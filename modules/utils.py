@@ -31,6 +31,7 @@ def get_input_bams(variants_file: str) -> list[str]:
 def get_input_vcfs(input_path: str | None) -> list[str]:
     if not input_path:
         return []
+
     if os.path.isdir(input_path):
         patterns = [os.path.join(input_path, "*.vcf"), os.path.join(input_path, "*.vcf.gz")]
         vcf_files = []
@@ -41,6 +42,7 @@ def get_input_vcfs(input_path: str | None) -> list[str]:
         return sorted(vcf_files)
     elif os.path.isfile(input_path):
         if input_path.endswith('.vcf') or input_path.endswith('.vcf.gz'):
+            
             return [input_path]
         try:
             with open(input_path, 'r', encoding='utf-8') as f:

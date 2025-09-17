@@ -15,13 +15,13 @@ ifeq ($(STATIC),1)
     LIBS += -static -ldeflate
 endif
 
-CPP_SRCS = SpikeInBAM.cpp VcfReader.cpp VcfRecord.cpp BamReader.cpp BamRecord.cpp BamWriter.cpp RefFasta.cpp $(SSW_DIR)/ssw.cpp $(SSW_DIR)/ssw_cpp.cpp
+CPP_SRCS = BAMulator.cpp VcfReader.cpp VcfRecord.cpp BamReader.cpp BamRecord.cpp BamWriter.cpp RefFasta.cpp $(SSW_DIR)/ssw.cpp $(SSW_DIR)/ssw_cpp.cpp
 C_SRCS = 
 CPP_OBJS = $(CPP_SRCS:.cpp=.o)
 C_OBJS = $(C_SRCS:.c=.o)
 OBJS = $(CPP_OBJS) $(C_OBJS)
 DEPS = $(OBJS:.o=.d)
-TARGET = spikeinbam
+TARGET = bamulator
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
